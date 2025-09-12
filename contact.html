@@ -55,14 +55,15 @@
     }
 
     .image_box1,
-    .image_box2 {
-      width: 100%;
-      aspect-ratio: 16 / 9; /* keeps proportion */
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      background-size: cover;
-      background-position: center;
-    }
+.image_box2 {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 200px;   /* ensures visibility on mobile */
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+}
 
     .image_box1 {
       grid-column: 1;
@@ -218,26 +219,28 @@
 
     // Slideshow
     function startSlideshow() {
-      var img = [
-        "photo/brain.jpg",
-        "photo/pc.jpg",
-        "photo/pc2.jpg"
-      ];
+  var img = [
+    "photo/brain.jpg",
+    "photo/pc.jpg",
+    "photo/pc2.jpg"
+  ];
 
-      var index = 0;
-      var box = document.getElementById("imageBox");
+  var index = 0;
+  var box = document.getElementById("imageBox");
 
-      function changeImage() {
-        box.style.backgroundImage = "url('" + img[index] + "')";
-        index = (index + 1) % img.length;
-      }
+  // ✅ Always set a default image first
+  box.style.backgroundImage = "url('" + img[0] + "')";
 
-      changeImage();
-      setInterval(changeImage, 2000);
-    }
+  function changeImage() {
+    index = (index + 1) % img.length;
+    box.style.backgroundImage = "url('" + img[index] + "')";
+  }
+
+  setInterval(changeImage, 2000);
+}
+
 
     window.onload = startSlideshow;
   </script>
 </body>
 </html>
-
