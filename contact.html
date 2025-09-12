@@ -56,8 +56,8 @@
 
     .image_box1,
     .image_box2 {
-      max-width: 450px;
-      height: 350px;
+      width: 100%;
+      aspect-ratio: 16 / 9; /* keeps proportion */
       border: 2px solid #ccc;
       border-radius: 10px;
       background-size: cover;
@@ -83,6 +83,7 @@
       background-color: #cf7ee6;
       font-family: Georgia;
       max-width: 500px;
+      height: auto;
     }
 
     .carddd h1 {
@@ -107,12 +108,12 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
       }
-      .image_box1, .image_box2, .carddd {
-        max-width: 100%;
-        height: 250px;
+      .image_box1, .image_box2 {
+        aspect-ratio: 16 / 9;
       }
       .carddd {
-        height: auto;
+        width: 100%;
+        max-width: 100%;
       }
     }
 
