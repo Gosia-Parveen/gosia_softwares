@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Home_page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+
+            body {
+            background-color: #0a1c3d;
+            padding-top: 70px; /* Leave space for navbar */
+            margin: 0;
+            min-height: 100vh;
+            }
+            
+            .navbar-brand {
+                font-family: 'Brush Script MT';
+            }
+
+            #sidebar {
+                position: fixed;
+                top: 55px; /* Below the navbar */
+                left: 0;
+                width: 250px;
+                height: calc(100% - 60px);
+                background-color: #cba2ea;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 1040;
+                overflow-y: auto;
+            }
+
+            #sidebar.show {
+                transform: translateX(0);
+            }
+
+            .content-wrapper {
+                transition: margin-left 0.3s ease-in-out;
+            }
+
+            .content-wrapper.shifted {
+                margin-left: 250px;
+            }
+
+            .manual_text{
+                font-size: 20px;
+                color: black;
+                text-align: left;
+                gap: 20px;
+            }
+
+            .manual_text h1 {
+                font-size: 35px;
+                color: GOLD;
+                text-align: center;
+            }
+            .manual_text p{
+                font-size: 18px;
+                color: #78046c;
+                text-align: left;
+            }
+
+            /*image style*/
+            .image_box1 {
+                display: block;
+                margin: 0 auto;       /* centers horizontally */
+                max-width: 570px;
+                height: 570px;
+                border: 2px solid #ccc;
+                border-radius: 10px;
+                background-size: cover;
+                background-position: center;
+            }
+
+            /*card details*/
+            .carddd-container{
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 20px;
+                width: 100%;
+                margin: 20px auto 20px auto;
+            }
+
+            .carddd {
+                border-radius: 10px;
+                padding: 20px;
+                max-width: 1000px;   
+            }
+
+            .carddd h3{
+                font-size: 25px;
+                color: #410f57;
+                text-align: center;
+                top: 5px;
+            }
+
+            .carddd p{
+                font-size: 18px;
+                color: #78046c;
+                text-align: left;
+            }
+
+            /* Responsive Styles - Home Page */
+            @media (max-width: 768px) {
+              .manual_text h1 {
+                font-size: 24px;
+              }
+              .manual_text p {
+                font-size: 16px;
+                text-align: center;
+              }
+              .image_box1 {
+                max-width: 100%;
+                height: 250px;
+              }
+              .logo1 {
+                max-width: 100%;
+                height: 100px;
+              }
+              #sidebar {
+                width: 200px;
+              }
+            }
+            @media (max-width: 576px) {
+              .manual_text h1 {
+                font-size: 20px;
+              }
+              .manual_text p {
+                font-size: 14px;
+              }
+            }
+            
+            @media (max-width: 992px) {
+              .carddd-container {
+                flex-direction: column;
+                align-items: center;
+              }
+              .carddd {
+                max-width: 90%;
+              }
+            }
+            @media (max-width: 576px) {
+              .carddd h3 {
+                font-size: 18px;
+              }
+              .carddd p {
+                font-size: 14px;
+              }
+              .button-container a {
+                font-size: 14px;
+                padding: 8px 15px;
+              }
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <!-- Navbar (Fixed and always visible) -->
+        <nav class="navbar fixed-top text-white navbar-dark">
+          <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+              <button class="navbar-toggler" type="button" id="toggleSidebar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+              <img src="photo/logo.png" class="rounded float-end" alt="..."  style="width:60px; position:absolute; top:20px; right:20px;">
+            </div>
+         </nav>
+
+            <!-- Sidebar (Pushes content, appears below navbar)-->
+        <div id="sidebar" class="bg-#bd739a text-#3f3381">
+         <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+          <h5 class="mb-0"></h5>
+            <button type="button" class="btn-close btn-close-white" id="closeSidebar"></button>
+        </div>
+          <ul class="navbar-nav flex-column px-3">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="P&S.html">Products & Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="DMarket.html">Digital Marketing</a></li>
+            <li class="nav-item"><a class="nav-link" href="CloudS.html">Cloud Software</a></li>
+            <li class="nav-item"><a class="nav-link" href="OClient.html">Our Clients</a></li>
+            <li class="nav-item"><a class="nav-link" href="OPartner.html">Our Partners</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+          </ul>
+        </div>
+
+    
+        <!-- Main Content -->
+        <main class="container content-wrapper">
+          <div class="manual_text">
+            <h1>OUR CLIENTS</h1>
+          </div>
+          <div id="imageBox" class="image_box1"></div>
+        </main>
+
+        <!-- Script -->
+        <script>
+            const sidebar = document.getElementById('sidebar');
+            const content = document.querySelector('.content-wrapper');
+            const toggleBtn = document.getElementById('toggleSidebar');
+            const closeBtn = document.getElementById('closeSidebar');
+        
+            // Load sidebar state on page load
+            document.addEventListener("DOMContentLoaded", function () {
+              if (localStorage.getItem('sidebarOpen') === 'true') {
+                sidebar.classList.add('show');
+                content.classList.add('shifted');
+              }
+            });
+      
+            toggleBtn.addEventListener('click', () => {
+              const isOpen = sidebar.classList.toggle('show');
+              content.classList.toggle('shifted', isOpen);
+              localStorage.setItem('sidebarOpen', isOpen);
+            });
+      
+            closeBtn.addEventListener('click', () => {
+              sidebar.classList.remove('show');
+              content.classList.remove('shifted');
+              localStorage.setItem('sidebarOpen', false);
+            });
+
+           // photo slide show 
+            function startSlideshow() {
+              var img = [
+                "photo/client/1.jpg",
+                "photo/client/2.jpg",  
+                "photo/client/3.jpg",  
+                "photo/client/4.jpg",  
+                "photo/client/5.jpg",  
+                "photo/client/6.jpg",  
+                "photo/client/7.jpg",  
+                "photo/client/8.jpg"   // fixed: avoid spaces in filename
+              ];
+      
+              var index = 0;
+              var box = document.getElementById("imageBox");
+
+              function changeImage() {
+                box.style.backgroundImage = "url('" + img[index] + "')";
+                index = (index + 1) % img.length;
+              }
+
+              changeImage();
+              setInterval(changeImage, 2000);
+            }
+
+            window.onload = startSlideshow;
+        </script>
+  </body>
+</html>
