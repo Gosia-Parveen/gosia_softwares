@@ -140,7 +140,7 @@
         <button class="navbar-toggler" type="button" id="toggleSidebar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <img src="comp_logo.jpg" class="rounded float-end" alt="logo" style="width:60px; position:absolute; top:20px; right:20px;">
+        <img src="black.png" class="rounded float-end" alt="logo" style="width:60px; position:absolute; top:20px; right:20px;">
       </div>
     </div>
   </nav>
@@ -192,31 +192,22 @@
 
   <!-- Script -->
   <script>
-    const sidebar = document.getElementById('sidebar');
-    const content = document.querySelector('.content-wrapper');
-    const toggleBtn = document.getElementById('toggleSidebar');
-    const closeBtn = document.getElementById('closeSidebar');
+            const sidebar = document.getElementById('sidebar');
+            const content = document.querySelector('.content-wrapper');
+            const toggleBtn = document.getElementById('toggleSidebar');
+            const closeBtn = document.getElementById('closeSidebar');
 
-    // Load sidebar state
-    document.addEventListener("DOMContentLoaded", function () {
-      if (localStorage.getItem('sidebarOpen') === 'true') {
-        sidebar.classList.add('show');
-        content.classList.add('shifted');
-      }
-    });
+            // Open sidebar when clicking toggle button
+            toggleBtn.addEventListener('click', () => {
+              sidebar.classList.toggle('show');
+              content.classList.toggle('shifted');
+            });
 
-    toggleBtn.addEventListener('click', () => {
-      const isOpen = sidebar.classList.toggle('show');
-      content.classList.toggle('shifted', isOpen);
-      localStorage.setItem('sidebarOpen', isOpen);
-    });
-
-    closeBtn.addEventListener('click', () => {
-      sidebar.classList.remove('show');
-      content.classList.remove('shifted');
-      localStorage.setItem('sidebarOpen', false);
-    });
-
+            // Close sidebar when clicking close button
+            closeBtn.addEventListener('click', () => {
+              sidebar.classList.remove('show');
+              content.classList.remove('shifted');
+            });
     // Slideshow
     function startSlideshow() {
   var img = [
@@ -244,4 +235,5 @@
   </script>
 </body>
 </html>
+
 
