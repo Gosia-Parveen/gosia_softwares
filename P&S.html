@@ -167,7 +167,7 @@
               <button class="navbar-toggler" type="button" id="toggleSidebar" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
               </button>
-              <img src="comp_logo.jpg" class="rounded float-end" alt="..."  style="width:60px; position:absolute; top:20px; right:20px;">
+              <img src="black.png" class="rounded float-end" alt="..."  style="width:60px; position:absolute; top:20px; right:20px;">
             </div>
          </nav>
 
@@ -268,29 +268,22 @@
             const content = document.querySelector('.content-wrapper');
             const toggleBtn = document.getElementById('toggleSidebar');
             const closeBtn = document.getElementById('closeSidebar');
-        
-      //        Load sidebar state on page load
-            document.addEventListener("DOMContentLoaded", function () {
-              if (localStorage.getItem('sidebarOpen') === 'true') {
-            sidebar.classList.add('show');
-            content.classList.add('shifted');
-              }
-            });
-      
+
+            // Open sidebar when clicking toggle button
             toggleBtn.addEventListener('click', () => {
-              const isOpen = sidebar.classList.toggle('show');
-              content.classList.toggle('shifted', isOpen);
-              localStorage.setItem('sidebarOpen', isOpen);
+              sidebar.classList.toggle('show');
+              content.classList.toggle('shifted');
             });
-      
+
+            // Close sidebar when clicking close button
             closeBtn.addEventListener('click', () => {
               sidebar.classList.remove('show');
               content.classList.remove('shifted');
-              localStorage.setItem('sidebarOpen', false);
             });
         </script>
 
 
   </body>
 </html>
+
 
