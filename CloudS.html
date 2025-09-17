@@ -1,442 +1,513 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home_page</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-        <style>
-            body {
-                background-color: #0a1c3d;
-                padding-top: 70px; /* Leave space for navbar */
-                margin: 0;
-                min-height: 100vh;
-            }
 
-            .navbar-brand {
-                font-family: 'Brush Script MT';
-            }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home_page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  body {
+    background-color: #0a1c3d;
+    padding-top: 70px;
+    margin: 0;
+    min-height: 100vh;
+  }
 
-            #sidebar {
-                position: fixed;
-                top: 55px; /* Below the navbar */
-                left: 0;
-                width: 250px;
-                height: calc(100% - 60px);
-                background-color: #cba2ea;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease-in-out;
-                z-index: 1040;
-                overflow-y: auto;
-            }
+  .navbar-brand {
+    font-family: 'Brush Script MT';
+  }
 
-            #sidebar.show {
-                transform: translateX(0);
-            }
+  #sidebar {
+    position: fixed;
+    top: 55px; /* Below the navbar */
+    left: 0;
+    width: 250px;
+    height: calc(100% - 60px);
+    background-color: #cba2ea;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1040;
+    overflow-y: auto;
+  }
 
-            .content-wrapper {
-                transition: margin-left 0.3s ease-in-out;
-            }
+  #sidebar.show {
+    transform: translateX(0);
+  }
 
-            .content-wrapper.shifted {
-                margin-left: 250px;
-            }
+  .content-wrapper {
+    transition: margin-left 0.3s ease-in-out;
+  }
 
-            .manual_text{
-                font-size: 20px;
-                color: black;
-                text-align: left;
-                gap: 20px;
-            }
+  .content-wrapper.shifted {
+    margin-left: 190px;
+  }
 
-            .manual_text h1 {
-                font-size: 35px;
-                color: #d0b2dd;
-                text-align: center;
-            }
-            .manual_text p{
-                font-size: 18px;
-                color: #78046c;
-                text-align: left;
-            }
+  .manual_text {
+    font-size: 20px;
+    color: black;
+    text-align: left;
+    gap: 20px;
+  }
 
-            /*image style*/
-            .image_box1 {
-                display: block;
-                margin-left: 0;
-                max-width: 500px;
-                height: 500px;
-                border: 2px solid #ccc;
-                border-radius: 10px;
-                background-size: cover;
-                background-position: left;
-            }
+  .manual_text h1 {
+    font-size: 31px;
+    color: #d0b2dd;
+    text-align: center;
+  }
 
-            /*card details*/
-            .carddd-container{
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                padding: 20px;
-                width: 100%;
-                gap: 20px;
-                margin: 20px auto;
-                align-items: stretch; /* Make all cards same height */
-            }
+  .manual_text p {
+    font-size: 18px;
+    color: #78046c;
+    text-align: left;
+  }
 
-            .carddd {
-                border-radius: 10px;
-                padding: 20px;
-                max-width: 300px;   
-                flex: 1 1 300px; /* Responsive width */
-                display: flex;
-                flex-direction: column; /* Stack content vertically */
-                justify-content: space-between; /* Spread content evenly */
-            }
+  /*image style*/
+  .image_box1 {
+    display: block;
+    margin-left: 0;
+    max-width: 500px;
+    height: 500px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: left;
+  }
 
-            .carddd h3{
-                font-size: 25px;
-                color: #410f57;
-                text-align: center;
-            }
+  /*card container*/
+  .carddd-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    width: 100%;
+    gap: 20px;
+    margin: 20px auto;
+    align-items: stretch; /* Make all cards same height */
+  }
 
-            .carddd p{
-                font-size: 18px;
-                color: #78046c;
-                text-align: left;
-            }
+  /* updated card rectangle */
+  .carddd {
+    display: flex;
+    flex-direction: row;       /* side by side */
+    align-items: stretch;      /* image & text equal height */
+    background-color: #957ee6;
+    border-radius: 10px;
+    padding: 20px;
+    gap: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+  }
 
-            /* Responsive Styles - Home Page */
-            @media (max-width: 768px) {
-              .manual_text h1 {
-                font-size: 24px;
-              }
-              .manual_text p {
-                font-size: 16px;
-                text-align: center;
-              }
-              .image_box1 {
-                max-width: 100%;
-                height: 250px;
-              }
-              .logo1 {
-                max-width: 100%;
-                height: 100px;
-              }
-              #sidebar {
-                width: 200px;
-              }
-            }
-            @media (max-width: 576px) {
-              .manual_text h1 {
-                font-size: 20px;
-              }
-              .manual_text p {
-                font-size: 14px;
-              }
-            }
-            
-            @media (max-width: 992px) {
-              .carddd-container {
-                flex-direction: column;
-                align-items: center;
-              }
-              .carddd {
-                max-width: 90%;
-              }
-            }
-            @media (max-width: 576px) {
-              .carddd h3 {
-                font-size: 18px;
-              }
-              .carddd p {
-                font-size: 14px;
-              }
-              .button-container a {
-                font-size: 14px;
-                padding: 8px 15px;
-              }
-            }
+  .carddd img {
+    width: 250px;              /* fixed width image */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;         /* crops image nicely */
+  }
 
-        </style>
-    </head>
-    <body>
+  .carddd-content {
+    flex: 1;                   /* text fills remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* center text vertically */
+  }
 
-        <!-- Navbar (Fixed and always visible) -->
-        <nav class="navbar fixed-top text-white navbar-dark">
-          <div class="container-fluid d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-              <button class="navbar-toggler" type="button" id="toggleSidebar" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-              </button>
-              <img src="comp_logo.jpg" class="rounded float-end" alt="..."  style="width:60px; position:absolute; top:20px; right:20px;">
-            </div>
-         </nav>
+  .carddd h3 {
+    font-size: 25px;
+    color: #410f57;
+    margin-bottom: 10px;
+    text-align: left;
+  }
 
-            <!-- Sidebar (Pushes content, appears below navbar)-->
-        <div id="sidebar" class="bg-#bd739a text-#3f3381">
-         <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
-          <h5 class="mb-0"></h5>
-            <button type="button" class="btn-close btn-close-white" id="closeSidebar"></button>
+  .carddd p {
+    font-size: 18px;
+    color: #78046c;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+
+  /* Responsive Styles - Home Page */
+  @media (max-width: 768px) {
+    .manual_text h1 {
+      font-size: 24px;
+    }
+
+    .manual_text p {
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .image_box1 {
+      max-width: 100%;
+      height: 250px;
+    }
+
+    .logo1 {
+      max-width: 100%;
+      height: 100px;
+    }
+
+    #sidebar {
+      width: 200px;
+    }
+
+    /* stack card on small screens */
+    .carddd {
+      flex-direction: column;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .carddd img {
+      width: 100%;
+      height: auto;
+    }
+
+    .carddd h3,
+    .carddd p {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .manual_text h1 {
+      font-size: 20px;
+    }
+
+    .manual_text p {
+      font-size: 14px;
+    }
+
+    .carddd h3 {
+      font-size: 18px;
+    }
+
+    .carddd p {
+      font-size: 14px;
+    }
+
+    .button-container a {
+      font-size: 14px;
+      padding: 8px 15px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .carddd-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .carddd {
+      max-width: 90%;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+  <!-- Navbar (Fixed and always visible) -->
+  <nav class="navbar fixed-top text-white navbar-dark">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <button class="navbar-toggler" type="button" id="toggleSidebar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <img src="photo/black.png" class="rounded float-end" alt="..."
+          style="width:60px; position:absolute; top:20px; right:20px;">
+      </div>
+  </nav>
+
+  <!-- Sidebar (Pushes content, appears below navbar)-->
+  <div id="sidebar" class="bg-#bd739a text-#3f3381">
+    <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+      <h5 class="mb-0"></h5>
+      <button type="button" class="btn-close btn-close-white" id="closeSidebar"></button>
+    </div>
+    <ul class="navbar-nav flex-column px-3">
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="P&S.html">Products & Services</a></li>
+      <li class="nav-item"><a class="nav-link" href="DMarket.html">Digital Marketing</a></li>
+      <li class="nav-item"><a class="nav-link" href="CloudS.html">Cloud Software</a></li>
+      <li class="nav-item"><a class="nav-link" href="OClient.html">Our Clients</a></li>
+      <li class="nav-item"><a class="nav-link" href="OPartner.html">Our Partners</a></li>
+      <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+    </ul>
+  </div>
+
+
+  <!-- Main Content -->
+  <main class="container content-wrapper">
+    <div class="manual_text">
+      <h1><b>OUR PRODUCTS AND SERVICES</b></h1>
+    </div>
+    <div class="carddd-container">
+      <div class="carddd" style="background-color:#7ee6e2 ;">
+  <img src="photo/partner/amc.jpg" alt="ANDi AMC">
+  <div class="carddd-content">
+    <h3><b>ANDi AMC</b></h3>
+    <p>Sector - Business</p>
+    <p>Suitable for all kind of service providers for managing / record keeping of their annual manitance contracts online with detailed customer and service database</p>
+    <p><b>List Price :</b> INR 25,200 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#b0e67e ;">
+  <img src="photo/partner/barcode.jpg" alt="ANDi Barcode">
+  <div class="carddd-content">
+    <h3><b>ANDi Barcode</b></h3>
+    <p>Sector - Business</p>
+    <p>Easy cloud base generation and printing of barcode suitable for any kind of products.</p>
+    <p><b>List Price :</b> INR 7,200 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #eaf2a5;">
+  <img src="photo/partner/erp.jpg" alt="ANDi Business ERP">
+  <div class="carddd-content">
+    <h3><b>ANDi Business ERP</b></h3>
+    <p>Sector - Business</p>
+    <p>Advanced business ERP to manage Multiple business & Multiple location warehouses efficiently. It has powerful user and role management module with adanced product management functions. Its inbuilt Contacts management module for customers as well as suppliers supports Purchase, Sales and Expense management with payment alerts. This ERP is equiped with Tax / tax groups function and have customize invoice & product labels priniting options with details report generation. This Business ERP is must for growing organisations..</p>
+    <p><b>List Price :</b> INR 43,200 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#957ee6 ;">
+  <img src="photo/partner/callcentre.jpg" alt="ANDi Call Centre">
+  <div class="carddd-content">
+    <h3><b>ANDi Call Centre</b></h3>
+    <p>Sector - Business</p>
+    <p>Advanced call center management portal covering all major activitites to run call center operations.</p>
+    <p><b>List Price :</b> INR 34,400 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#e67ee0 ;">
+  <img src="photo/partner/courier.jpg" alt="ANDi Courier">
+  <div class="carddd-content">
+    <h3><b>ANDi Courier</b></h3>
+    <p>Sector - Business</p>
+    <p>Software designed for courier companies to monitor the logistics of storage and handling of cargo from its booking till final destination efficiently.</p>
+    <p><b>List Price :</b> INR 18,000 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #cf7ee6;">
+  <img src="photo/partner/banking.jpg" alt="ANDi Banking">
+  <div class="carddd-content">
+    <h3><b>ANDi Banking</b></h3>
+    <p>Sector - Banking</p>
+    <p>A very powerful, fast and secured banking portal with features like account statement, credit/debit facility and complete user management system. Suitable for mini banks or micro finance institutes for managing all banking processes and activities</p>
+    <p><b>List Price :</b> INR 28,800 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #7eb7e6;">
+  <img src="photo/partner/crowdfunding.jpg" alt="ANDi Crowd Funding">
+  <div class="carddd-content">
+    <h3><b>ANDi Crowd Funding</b></h3>
+    <p>Sector - Business</p>
+    <p>Software to manage online crowd funding functions like donation, Charity funding, Bidding, etc</p>
+    <p><b>List Price :</b> INR 28,800 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #957ee6;">
+  <img src="photo/partner/dvc1.jpg" alt="ANDi dVC1">
+  <div class="carddd-content">
+    <h3><b>ANDi dVC1</b></h3>
+    <p>Sector - Business</p>
+    <p>Mini static website or Simple online profile maker with all details like social icons, contact details, profile, portal, business activities etc at home page & appointment booking option as per availability. This is suitable for all kind of business / persons from doctors to job seekers.</p>
+    <p><b>List Price :</b> INR 27,000 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #f2d7a5;">
+  <img src="photo/partner/dvc2.jpg" alt="ANDi dVC2">
+  <div class="carddd-content">
+    <h3><b>ANDi dVC2</b></h3>
+    <p>Sector - Business</p>
+    <p>Software for making Online profiles (dVC card) with photo, location, social media links and contact details. In addition, the cards has integrated organic visiter count, product display section and order booking with payment option using PayTM / GooglePay or Phonepay account links. End card users can add/modify products online in his card including the product name, photos, price, tax and video links etc. These cards gives flexibility of E-Com function with complete business cycle from display + pricing + ordering + payment in it !!</p>
+    <p><b>List Price :</b> INR 36,000 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #5a62f1;">
+  <img src="photo/partner/garage.jpg" alt="ANDi Garage">
+  <div class="carddd-content">
+    <h3><b>ANDi Garage</b></h3>
+    <p>Sector - Business</p>
+    <p>Suitable for auto garage / repair workshops with inventory and reporting system. Admin can add roles as employee, customer, accountant in it and manage all kind of workshop activities starting from Job card creation to invoicing from this software online.</p>
+    <p><b>List Price :</b> INR 27,000 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #b97ee6;">
+  <img src="photo/partner/gym.jpg" alt="ANDi Gym">
+  <div class="carddd-content">
+    <h3><b>ANDi Gym</b></h3>
+    <p>Sector - Business</p>
+    <p>Suitable for modern gym for managing all kind of Gym activities including training & suppliment records</p>
+    <p><b>List Price :</b> INR 21,600 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#b0e67e ;">
+  <img src="photo/partner/blog.jpg" alt="ANDi Blog">
+  <div class="carddd-content">
+    <h3><b>ANDi Blog</b></h3>
+    <p>Sector - Creative</p>
+    <p>Perfect Bloging portal with advanced features & smooth functionality.</p>
+    <p><b>List Price :</b> INR 28,800 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #cf7ee6;">
+  <img src="photo/partner/news.jpg" alt="ANDi News">
+  <div class="carddd-content">
+    <h3><b>ANDi News</b></h3>
+    <p>Sector - Creative</p>
+    <p>Advanced online News portal suitable for News or advertising agencies. Admin can manage all the post / news related activities efficiently & add video links etc. Also admin can make reporters and allow them to post news in portal in controlled manner with his approval.</p>
+    <p><b>List Price :</b> INR 25,200 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color: #7eb7e6;">
+  <img src="photo/partner/dating.jpg" alt="ANDi Dating">
+  <div class="carddd-content">
+    <h3><b>ANDi Dating</b></h3>
+    <p>Sector - Creative</p>
+    <p>Dating portal is a social discovery website for meeting new people and to make friendly and romantic connections with people in real time.</p>
+    <p><b>List Price :</b> INR 28,800 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#b0e67e ;">
+  <img src="photo/partner/dvc3.jpg" alt="ANDi dVC3">
+  <div class="carddd-content">
+    <h3><b>ANDi dVC3</b></h3>
+    <p>Sector - Business</p>
+    <p>Basic single page online profile maker (digital business card) with clickable links for phone number, whatsapp, email, website and social media links. User can change its design templete by himself online to give fresh look everytime - suitable for all kind of persons.</p>
+    <p><b>List Price :</b> INR 27,000 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#957ee6 ;">
+  <img src="photo/partner/hrm.jpg" alt="ANDi HRM">
+  <div class="carddd-content">
+    <h3><b>ANDi HRM</b></h3>
+    <p>Sector - Business</p>
+    <p>Suitable for companies / industries for HRM related activities like employee management with attendance, payroll module, Sales, purchase, inventory & expenses etc to smoothly run organisations</p>
+    <p><b>List Price :</b> INR 28,800 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#e67ee0 ;">
+  <img src="photo/partner/inventory1.jpg" alt="ANDi Inventory 1">
+  <div class="carddd-content">
+    <h3><b>ANDi Inventory 1</b></h3>
+    <p>Sector - Business</p>
+    <p>Basic inventory management system for pharmaceutical shops, having products, expiry dates, purchase & sales for stock keeping purpose.</p>
+    <p><b>List Price :</b> INR 14,400 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#7ee6e2 ;">
+  <img src="photo/partner/inventory2.jpg" alt="ANDi Inventory 2">
+  <div class="carddd-content">
+    <h3><b>ANDi Inventory 2</b></h3>
+    <p>Sector - Business</p>
+    <p>Simple inventory system with order booking & invoice module management - suitable for small shops owners.</p>
+    <p><b>List Price :</b> INR 16,200 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#5a62f1 ;">
+  <img src="photo/partner/inventory3.jpg" alt="ANDi Inventory 3">
+  <div class="carddd-content">
+    <h3><b>ANDi Inventory 3</b></h3>
+    <p>Sector - Business</p>
+    <p>Simple Inventory management system for SOHO business. Having product, purchase, Vendor, Sale & customer modules with reporting function.</p>
+    <p><b>List Price :</b> INR 21,600 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#cf7ee6 ;">
+  <img src="photo/partner/inventory4.jpg" alt="ANDi Inventory 4">
+  <div class="carddd-content">
+    <h3><b>ANDi Inventory 4</b></h3>
+    <p>Sector - Business</p>
+    <p>Online inventory system with order management for keeping track of all items - suitable for small shop keeper with invoicing function</p>
+    <p><b>List Price :</b> INR 25,200 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#b0e67e ;">
+  <img src="photo/partner/laundry.jpg" alt="ANDi Laundry">
+  <div class="carddd-content">
+    <h3><b>ANDi Laundry</b></h3>
+    <p>Sector - Business</p>
+    <p>Online order booking portal is made for drycleaners. Here customers can online book their orders, select pickup timing, make payment (cash/online). Admin can manage all activities and also ask applications for service providers.</p>
+    <p><b>List Price :</b> INR 18,000 + GST</p>
+  </div>
+</div>
+
+<div class="carddd" style="background-color:#7ee6e2 ;">
+  <img src="photo/partner/leads1.jpg" alt="ANDi Leads 1">
+  <div class="carddd-content">
+    <h3><b>ANDi Leads 1</b></h3>
+    <p>Sector - Business</p>
+    <p>Cloud based online Lead management software for capturing leads, making quotation, assigning tasks, making Sales invoice, etc. Most suitable for organisations with sales team to manage complete leads records with unlimited users. Low cost & easy to use software</p>
+    <p><b>List Price :</b> INR 23,400 + GST</p>
+  </div>
+</div>
+
+
+      <div class="carddd" style="background-color:#957ee6 ;">
+        <img src="photo/partner/2.jpg" alt="Buddha IT Solutions">
+        <div class="carddd-content">
+          <h3><b>ANDi Leads 2</b></h3>
+          <p>Sector - Business</p>
+          <p>A perfect Lead Management portal. Admin can create multiple users, multiple products, multi cities, etc and
+            assign leads to any user. Users can add daily leads progress & followups with source of leads to smoothly
+            monitoring leads by admin.</p>
+          <p><b>List Price :</b> INR 18,000 + GST</p>
         </div>
-          <ul class="navbar-nav flex-column px-3">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="P&S.html">Products & Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="DMarket.html">Digital Marketing</a></li>
-            <li class="nav-item"><a class="nav-link" href="CloudS.html">Cloud Software</a></li>
-            <li class="nav-item"><a class="nav-link" href="OClient.html">Our Clients</a></li>
-            <li class="nav-item"><a class="nav-link" href="OPartner.html">Our Partners</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
-          </ul>
-        </div>
-
-    
-        <!-- Main Content -->
-        <main class="container content-wrapper">
-            <div class="manual_text">
-                <h1><b>OUR PRODUCTS AND SERVICES</b></h1>
-            </div>
-            <div class="carddd-container">
-      <div class="carddd" style="background-color:#7ee6e2 ;">
-        <h3><b>ANDi AMC</b></h3>
-        <p>Sector - Business</p>
-        <p>Suitable for all kind of service providers for managing / record keeping of their annual manitance contracts
-          online with detailed customer and service database
-        </p>
-        <p>List Price : INr 25,200 + GST</p>
-      </div>
-      <div class="carddd" style="background-color:#b0e67e ;">
-        <h3><b>ANDi Barcode</b></h3>
-        <p>Sector - Business</p>
-        <p>Easy cloud base generation and printing of barcode suitable for any kind of products.
-        </p>
-        <p>List Price : INr 7,200 + GST</p>
       </div>
 
-      <div class="carddd" style="background-color: #eaf2a5;">
-        <h3><b>ANDi Business ERP</b></h3>
-        <p>Sector - Business</p>
-        <p>Advanced business ERP to manage Multiple business & Multiple location warehouses efficiently. It has powerful
-          user and role management module with adanced product management functions. Its inbuilt Contacts management
-          module for customers as well as suppliers supports Purchase, Sales and Expense management with payment alerts.
-          This ERP is equiped with Tax / tax groups function and have customize invoice & product labels priniting
-          options with details report generation. This Business ERP is must for growing organisations..
-        </p>
-        <p>List Price : INr 43,200 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#957ee6 ;">
-        <h3><b>ANDi Call Centre</b></h3>
-        <p>Sector - Business</p>
-        <p>Advanced call center management portal covering all major activitites to run call center operations.
-        </p>
-        <p>List Price : INr 34,400 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#e67ee0 ;">
-        <h3><b>ANDi Courier</b></h3>
-        <p>Sector - Business</p>
-        <p>Software designed for courier companies to monitor the logistics of storage and handling of cargo from its
-          booking till final destination efficiently.
-        </p>
-        <p>List Price : INr 18,000 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color: #cf7ee6;">
-        <h3><b>ANDi Banking</b></h3>
-        <p>Sector - Banking</p>
-        <p>A very powerful, fast and secured banking portal with features like account statement, credit/debit facility
-          and complete user management system. Suitable for mini banks or micro finance institutes for managing all
-          banking processes and activities
-        </p>
-        <p>List Price : INr 28,800 + GST</p>
-      </div>
-      <div class="carddd" style="background-color: #7eb7e6;">
-        <h3><b>ANDi Crowd Funding</b></h3>
-        <p>Sector - Business</p>
-        <p>Software to manage online crowd funding functions like donation, Charity funding, Bidding, etc</p>
-        <p>List Price : INr 28,800 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color: #957ee6;">
-        <h3><b>ANDi dVC1</b></h3>
-        <p>Sector - Business</p>
-        <p>Mini static website or Simple online profile maker with all details like social icons, contact details,
-          profile, portal, business activities etc at home page & appointment booking option as per availability. This
-          is suitable for all kind of business / persons from doctors to job seekers.
-        </p>
-        <p>List Price : INr 27,000 + GST</p>
-      </div>
-      <div class="carddd" style="background-color: #f2d7a5;">
-        <h3><b>ANDi dVC2</b></h3>
-        <p>Sector - Business</p>
-        <p>Software for making Online profiles (dVC card) with photo, location, social media links and contact details.
-          In addition, the cards has integrated organic visiter count, product display section and order booking with
-          payment option using PayTM / GooglePay or Phonepay account links. End card users can add/modify products
-          online in his card including the product name, photos, price, tax and video links etc. These cards gives
-          flexibility of E-Com function with complete business cycle from display + pricing + ordering + payment in it
-          !!
-        </p>
-        <p>List Price : INr 36,000 + GST</p>
-      </div>
-      <div class="carddd" style="background-color: #5a62f1;">
-        <h3><b>ANDi Garage</b></h3>
-        <p>Sector - Business</p>
-        <p>Suitable for auto garage / repair workshops with inventory and reporting system. Admin can add roles as
-          employee, customer, accountant in it and manage all kind of workshop activities starting from Job card
-          creation to invoicing from this software online.
-        </p>
-        <p>List Price : INr 27,000 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color: #b97ee6;">
-        <h3><b>ANDi Gym</b></h3>
-        <p>Sector - Business</p>
-        <p>Suitable for modern gym for managing all kind of Gym activities including training & suppliment records
-        </p>
-        <p>List Price : INr 21,600 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#b0e67e ;">
-        <h3><b>ANDi Blog</b></h3>
-        <p>Sector - Creative</p>
-        <p>Perfect Bloging portal with advanced features & smooth functionality.
-        </p>
-        <p>List Price : INr 28,800 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color: #cf7ee6;">
-        <h3><b>ANDi News</b></h3>
-        <p>Sector - Creative</p>
-        <p>Advanced online News portal suitable for News or advertising agencies. Admin can manage all the post / news
-          related activities efficiently & add video links etc. Also admin can make reporters and allow them to post
-          news in portal in controlled manner with his approval.
-        </p>
-        <p>List Price : INr 25,200 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color: #7eb7e6;">
-        <h3><b>ANDi Dating</b></h3>
-        <p>Sector - Creative</p>
-        <p>Dating portal is a social discovery website for meeting new people and to make friendly and romantic
-          connections with people in real time.</p>
-        <p>List Price : INr 28,800 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#b0e67e ;">
-        <h3><b>ANDi dVC3</b></h3>
-        <p>Sector - Business</p>
-        <p>Basic single page online profile maker (digital business card) with clickable links for phone number,
-          whatsapp, email, website and social media links. User can change its design templete by himself online to give
-          fresh look everytime - suitable for all kind of persons.</p>
-        <p>List Price : INr 27,000 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#957ee6 ;">
-        <h3><b>ANDi HRM</b></h3>
-        <p>Sector - Business</p>
-        <p>Suitable for companies / industries for HRM related activities like employee management with attendance,
-          payroll module, Sales, purchase, inventory & expenses etc to smoothly run organisations</p>
-        <p>List Price : INr 28,800 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#e67ee0 ;">
-        <h3><b>ANDi Inventory 1</b></h3>
-        <p>Sector - Business</p>
-        <p>Basic inventory management system for pharmaceutical shops, having products, expiry dates, purchase & sales
-          for stock keeping purpose.</p>
-        <p>List Price : INr 14,400 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#7ee6e2 ;">
-        <h3><b>ANDi Inventory 2</b></h3>
-        <p>Sector - Business</p>
-        <p>Simple inventory system with order booking & invoice module management - suitable for small shops owners.</p>
-        <p>List Price : INr 16,200 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#5a62f1 ;">
-        <h3><b>ANDi Inventory 3</b></h3>
-        <p>Sector - Business</p>
-        <p>Simple Inventory management system for SOHO business. Having product, purchase, Vendor, Sale & customer
-          modules with reporting function.</p>
-        <p>List Price : INr 21,600 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#cf7ee6 ;">
-        <h3><b>ANDi Inventory 4</b></h3>
-        <p>Sector - Business</p>
-        <p>Online inventory system with order management for keeping track of all items - suitable for small shop keeper
-          with invoicing function</p>
-        <p>List Price : INr 25,200 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#b0e67e ;">
-        <h3><b>ANDi Laundry</b></h3>
-        <p>Sector - Business</p>
-        <p>Online order booking portal is made for drycleaners. Here customers can online book their orders, select
-          pickup timing, make payment (cash/online). Admin can manage all activities and also ask applications for
-          service providers.</p>
-        <p>List Price : INr 18,000 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#7ee6e2 ;">
-        <h3><b>ANDi Leads 1</b></h3>
-        <p>Sector - Business</p>
-        <p>Cloud based online Lead management software for capturing leads, making quotation, assigning tasks, making
-          Sales invoice, etc. Most suitable for organisations with sales team to manage complete leads records with
-          unlimited users. Low cost & easy to use software</p>
-        <p>List Price : INr 23,400 + GST</p>
-      </div>
-
-      <div class="carddd" style="background-color:#957ee6 ;">
-        <h3><b>ANDi Leads 2</b></h3>
-        <p>Sector - Business</p>
-        <p>A perfect Lead Management portal. Admin can create multiple users, multiple products, multi cities, etc and
-          assign leads to any user. Users can add daily leads progress & followups with source of leads to smoothly
-          monitoring leads by admin.</p>
-        <p>List Price : INr 18,000 + GST</p>
-      </div>
 
 
     </div>
 
 
-          
-        
-        </main>
 
-        <!-- Script -->
-        <script>
-            const sidebar = document.getElementById('sidebar');
-            const content = document.querySelector('.content-wrapper');
-            const toggleBtn = document.getElementById('toggleSidebar');
-            const closeBtn = document.getElementById('closeSidebar');
-        
-      //        Load sidebar state on page load
-            document.addEventListener("DOMContentLoaded", function () {
-              if (localStorage.getItem('sidebarOpen') === 'true') {
-            sidebar.classList.add('show');
-            content.classList.add('shifted');
-              }
-            });
-      
-            toggleBtn.addEventListener('click', () => {
-              const isOpen = sidebar.classList.toggle('show');
-              content.classList.toggle('shifted', isOpen);
-              localStorage.setItem('sidebarOpen', isOpen);
-            });
-      
-            closeBtn.addEventListener('click', () => {
-              sidebar.classList.remove('show');
-              content.classList.remove('shifted');
-              localStorage.setItem('sidebarOpen', false);
-            });
-        </script>
+  </main>
+
+  <!-- Script -->
+  <script>
+          const sidebar = document.getElementById('sidebar');
+          const content = document.querySelector('.content-wrapper');
+          const toggleBtn = document.getElementById('toggleSidebar');
+          const closeBtn = document.getElementById('closeSidebar');
+
+          // Open sidebar when clicking toggle button
+          toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            content.classList.toggle('shifted');
+          });
+
+          // Close sidebar when clicking close button
+          closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            content.classList.remove('shifted');
+          });
+  </script>
 
 
-  </body>
+</body>
+
 </html>
-
-
